@@ -1,0 +1,1 @@
+; Move a byte string from 200h to 300h in 7000h segment.

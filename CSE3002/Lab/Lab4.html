@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>BSNL</title>
+    <script>
+        function calculateDataUsage() {
+            var data = parseInt(document.getElementById('data_val').value, 10);
+            var base = 0;
+            var total = 0;
+            if (data <= 240) {
+                base = 35;
+                total = base;
+            }
+            else if (data <= 1000) {
+                base = 140;
+                if (data > 300) {
+                    total = base + (data - 300) * 0.3
+                }
+            }
+            else if (data <= 2000) {
+                base = 240;
+                if (data > 1600) {
+                    total = base + (data - 1600) * 0.5
+                }
+            }
+            else {
+                base = 790;
+                if (data > 2900) {
+                    total = base + (data - 2900) * 0.3
+                }
+            }
+            window.alert("Total charge is $" + total);
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>BSNL</h1>
+    <p>
+        <script>document.write(new Date())</script>
+    </p>
+    <form name="bsnl" onsubmit="return calculateDataUsage()" method="post">
+        <label>
+            Caculate charges for your data usage <br><br>
+            <input id="data_val" name="data_val" type="number" placeholder="Enter data usage in MBs">
+        </label>
+        <input type="submit" value="send" name="Submit" />
+    </form>
+</body>
+
+</html>

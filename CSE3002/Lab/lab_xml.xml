@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- Apply XML DTD and XML Schema for the above Books Database -->
+
+
+<!-- Consider the following XML DTD -->
+
+<!-- 1. XML-Document -->
+<!DOCTYPE catalog SYSTEM "cat.dtd">
+<catalog>
+<product>
+<productname>cupboard</productname>
+<storagenumber>3421</storagenumber>
+<dimension unit="cm">
+<width>120</width>
+<heigth>180</heigth>
+<depth>34</depth>
+</dimension>
+<description>oak veneer</description>
+</product>
+</catalog>
+<!-- <?xml version="1.0"?> -->
+<!-- 2. XML-Document -->
+<!-- <!DOCTYPE catalog SYSTEM "cat.dtd"> -->
+<catalog>
+<product>
+<productname>mirror</productname>
+<storagenumber>3455</storagenumber>
+<dimension unit="m">
+<width>1</width>
+<heigth>1,5</heigth>
+</dimension>
+<description>blue frame</description>
+<supplier>Schmid Co.</supplier>
+<supplier>Mayer GmbH</supplier>
+</product>
+</catalog>
+<!-- Deﬁne a possible XML Schema for the 
+2.XML documents. -->

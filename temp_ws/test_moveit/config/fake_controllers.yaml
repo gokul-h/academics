@@ -1,0 +1,17 @@
+controller_list:
+  - name: fake_marty_arm_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+  - name: fake_marty_gripper_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - joint5
+      - joint6
+initial:  # Define initial robot poses per group
+  - group: marty_arm
+    pose: home

@@ -1,0 +1,6 @@
+/cmake-build-debug
+pointers.c
+../CMakeLists.txt
+temp.c
+.idea
+*.exe

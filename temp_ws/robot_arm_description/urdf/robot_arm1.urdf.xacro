@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rover">
+
+    <link name="world"/>
+    <link name="base">
+        <visual>
+            <origin rpy="1.57 0 0" xyz="-0.5 0.5 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/Body without wheels.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="wheel">
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.1 -0.1 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/temp Wheel.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="wheel2">
+        <visual>
+            <origin rpy="0 1.57 0" xyz="0 -0.115 0.115"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/temp Wheel.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="wheel3">
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.1 -0.1 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/temp Wheel.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="wheel4">
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.1 -0.1 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/temp Wheel.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="virtual_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base"/>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </joint>
+
+    <joint name="wheel_name" type="revolute">
+        <parent link="base"/>
+        <child link="wheel"/>
+        <origin rpy="0 0 0" xyz="0.4 0.45 -0.07"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="2.5" upper="0.5" effort="30" velocity="10"/>
+    </joint>
+
+    <joint name="wheel_name2" type="revolute">
+        <parent link="base"/>
+        <child link="wheel2"/>
+        <origin rpy="1.57 0 1.57" xyz="-0.45 0.45 -0.08"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-3.14" upper="3.14" effort="30" velocity="10"/>
+    </joint>
+
+    <joint name="wheel_name3" type="revolute">
+        <parent link="base"/>
+        <child link="wheel3"/>
+        <origin rpy="0 0 0" xyz="0.4 -0.45 -0.07"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="2.5" upper="0.5" effort="30" velocity="10"/>
+    </joint>
+
+    <joint name="wheel_name4" type="revolute">
+        <parent link="base"/>
+        <child link="wheel4"/>
+        <origin rpy="0 0 0" xyz="-0.495 -0.45 -0.08"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="2.5" upper="0.5" effort="30" velocity="10"/>
+    </joint>
+</robot>

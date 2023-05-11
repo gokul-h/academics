@@ -1,0 +1,8 @@
+Requests is a HTTP library for the Python programming language. The goal of the project is to make HTTP requests simpler and more human-friendly. The current version is 2.28.0. Requests is released under the Apache License 2.0.
+Requests is one of the most popular Python libraries that is not included with Python. It has been proposed that Requests be distributed with Python by default.
+
+Example code
+References
+External links
+Official website 
+requests on GitHub

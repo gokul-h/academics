@@ -1,0 +1,35 @@
+<!-- Form Validation  -->
+<html>
+    <head>
+        <script>
+            // Verify if any input
+            // function validateForm(){
+            //     let x = document.forms{"myForm"},{"fname"}.value;
+            //     if(x==""){
+            //         alert("Name must be filled out");
+            //         return false;
+            //     }
+            // }
+            function validatePhoneNumber(){
+                let x = document.getElementById("myPhoneNumber");
+                let text = x.value;
+                if(x%1==0){
+                    text = "OK";
+                }else{
+                    text = "Invalid";
+                }
+                document.getElementById("message").innerHTML = text;
+            }
+            //verify number
+            //function 
+        </script>
+    </head>
+    <body>
+<form name="myForm" method="POST" onsubmit="validatePhoneNumber();">
+    <!-- Name:<input type="text" name="fname"> -->
+    number:<input type="text" id="myPhoneNumber">
+    <input type="text" id="message" readonly>
+    <input type="submit" value="Submit">
+</form>
+    </body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>Election</title>
+    <script>
+        var count = [0, 0, 0, 0, 0];
+        var spoilt = 0;
+        function vote() {
+            var data = parseInt(document.getElementById('cand_val').value, 10);
+
+            switch (data) {
+                case 1: count[0]++;
+                case 2: count[1]++;
+                case 3: count[2]++;
+                case 4: count[3]++;
+                case 5: count[4]++;
+                default: spoilt++;
+            }
+            document.getElementById("c1").innerHTML = count[0];
+            document.getElementById("c2").innerHTML = count[1];
+            document.getElementById("c3").innerHTML = count[2];
+            document.getElementById("c4").innerHTML = count[3];
+            document.getElementById("c5").innerHTML = count[4];
+            document.getElementById("spoilt").innerHTML = spoilt;
+        }
+
+    </script>
+    <style>
+        bd {
+            border: 2px solid black;
+            padding: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Election</h1>
+    <p>
+        <script>document.write(new Date())</script>
+    </p>
+    <form name="election" method="post">
+        <label>
+            Select a candidate from 1-5 <br><br>
+            <input id="cand_val" name="cand_val" type="number" min="1" max="10">
+        </label>
+        <button onclick="vote()">Submit</button>
+    </form>
+    <table >
+        <tr>
+            <th>Candidate</th>
+            <th>Vote</th>
+        </tr>
+        <tr>
+            <td>Candidate 1</td>
+            <td id="c1"></td>
+        </tr>
+        <tr>
+            <td>Candidate 2</td>
+            <td id="c2"></td>
+        </tr>
+        <tr>
+            <td>Candidate 3</td>
+            <td id="c3"></td>
+        </tr>
+        <tr>
+            <td>Candidate 4</td>
+            <td id="c4"></td>
+        </tr>
+        <tr>
+            <td>Candidate 5</td>
+            <td id="c5"></td>
+        </tr>
+        <tr>
+            <td>Spoilt</td>
+            <td id="spoilt"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robotic_arm">
+
+    <xacro:property name="PI" value="3.14"/>
+    <xacro:property name="effort" value="0.30"/>
+    <xacro:property name="velocity" value="0.10"/>
+
+    <xacro:macro name="default_inertial" params="mass">
+        <inertial>
+            <mass value="${mass}"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="default_transmission" params="number">
+        <transmission name="transmission${number}">
+            <type>
+                transmission_interface/SimpleTransmission
+            </type>
+            <joint name="joint${number}">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="motor${number}">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <link name="world"/>
+
+    <link name="base">
+        <xacro:default_inertial mass="0.10"/>
+        <visual>
+            <origin rpy="1.57 0 0" xyz="-0.5 0.5 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/base.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="1.57 0 0" xyz="-0.5 0.5 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/base.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="base2">
+        <xacro:default_inertial mass="0.01"/>
+        <visual>
+            <origin rpy="1.57 0 0" xyz="-0.1 0.1 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/fg base.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="1.57 0 0" xyz="-0.1 0.1 -0.1"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/fg base.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="arm1">
+        <xacro:default_inertial mass="0.1"/>
+        <visual>
+            <origin rpy="${PI/2} 0 ${PI/1.6}" xyz="-0.27 -0.37 -0.53"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/arm1.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="${PI/2} 0 ${PI/1.6}" xyz="-0.27 -0.37 -0.53"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/arm1.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="arm2">
+        <xacro:default_inertial mass="0.01"/>
+        <visual>
+            <origin rpy="1.57 0 ${PI/1.6}" xyz="-0.27 -0.53 -0.63"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/limb2.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="1.57 0 ${PI/1.6}" xyz="-0.27 -0.53 -0.63"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/limb2.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="gripper_arm_join">
+        <xacro:default_inertial mass="0.005"/>
+        <visual>
+            <origin rpy="1.57 0 0" xyz="-0.03 0.02 -0.02"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/modle grip.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="1.57 0 0" xyz="-0.03 0.02 -0.02"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/modle grip.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="gripper">
+        <xacro:default_inertial mass="0.002"/>
+        <visual>
+            <origin rpy="0 -1.57 1.57" xyz="0.01 0.0473 0.010"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/grip.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 -1.57 1.57" xyz="0.01 0.0473 0.010"/>
+            <geometry>
+                <mesh filename="package://robot_arm_description/mesh/grip.STL" scale="0.001 0.001 0.001"/>
+
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="virtual_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base"/>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </joint>
+
+    <joint name="joint1" type="revolute">
+        <parent link="base"/>
+        <child link="base2"/>
+        <origin rpy="0 0 0" xyz="0 0 0.05"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-${PI/2}" upper="${PI/2}" effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name="joint2" type="revolute">
+        <parent link="base2"/>
+        <child link="arm1"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="${PI/1.5}" upper="${PI/3}" effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name="joint3" type="revolute">
+        <parent link="arm1"/>
+        <child link="arm2"/>
+        <origin rpy="0 0 0" xyz="0 0.29 -0.28"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="2.37" upper="1.02" effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name="joint4" type="revolute">
+        <parent link="arm2"/>
+        <child link="gripper_arm_join"/>
+        <origin rpy="0 0 0" xyz="0 -0.325 -0.07"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="2.5" upper="0.5" effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name="joint5" type="revolute">
+        <parent link="gripper_arm_join"/>
+        <child link="gripper"/>
+        <origin rpy="0 0 0" xyz="-0.005 -0.01 0.05"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="${-PI}" upper="${PI}" effort="${effort}" velocity="${velocity}"/>
+    </joint>
+    
+    <xacro:default_transmission number="1"/>
+    <xacro:default_transmission number="2"/>
+    <xacro:default_transmission number="3"/>
+    <xacro:default_transmission number="4"/>
+    <xacro:default_transmission number="5"/>
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/robot_arm</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+            <legacyModeNS>true</legacyModeNS>
+        </plugin>
+    </gazebo>
+</robot>

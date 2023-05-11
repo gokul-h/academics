@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Form Validation</title>
+    <script>
+        function Validation() {
+            var name = document.forms["ValForm"]["Name"];
+            var email = document.forms["ValForm"]["EMail"];
+            var phone = document.forms["ValForm"]["Mobile"];
+            var subject = document.forms["ValForm"]["Subject"];
+            var password = document.forms["ValForm"]["Password"];
+            var address = document.forms["ValForm"]["Address"];
+
+            if (name.value == "") {
+                window.alert("Please enter your name.");
+                name.focus();
+                return false;
+            }
+
+            if (address.value == "") {
+                window.alert("Please enter your address.");
+                address.focus();
+                return false;
+            }
+
+            if (email.value == "") {
+                window.alert("Please enter a valid e-mail address.");
+                email.focus();
+                return false;
+            }
+
+            if (phone.value == "") {
+                window.alert("Please enter your Mobile number.");
+                phone.focus();
+                return false;
+            }
+
+            if (password.value == "") {
+                window.alert("Please enter your password");
+                password.focus();
+                return false;
+            }
+
+            if (subject.selectedIndex < 1) {
+                alert("Please enter your course.");
+                subject.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div style="align-content: center;align-items: center;border: 100px solid black;background-color: aqua;">
+        <h1 style="text-align: center;">Form Validation</h1>
+        <p>
+            <script>document.write(new Date())</script>
+        </p>
+        <form name="ValForm" onsubmit="return Validation()" method="post">
+            <p>Name: <input type="text"  name="Name" /></p>
+            <br>
+            <p>Address: <input type="text"  name="Address" /></p>
+            <br>
+            <p>E-mail Address: <input type="text"  name="EMail" /></p>
+            <br>
+            <p>Password: <input type="text"  name="Password" /></p>
+            <br>
+            <p>Mobile: <input type="text"  name="Mobile" /></p>
+            <br>
+
+            <p>
+                SELECT YOUR COURSE
+                <select type="text" value="" name="Subject">
+                    <option>BTECH CSE Core</option>
+                    <option>BTECH CSE AI</option>
+                    <option>BTECH CSE CPS</option>
+                    <option>BTECH CSE IoT</option>
+                    <option>BTECH ECE </option>
+                </select>
+            </p>
+            <br>
+            <br>
+            <input type="submit" value="send" name="Submit" />
+            </p>
+        </form>
+    </div>
+
+</body>
+
+</html>

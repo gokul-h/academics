@@ -1,0 +1,41 @@
+<!-- Based on the book "The Complete Reference HTML & CSS" by Thomas A Powell -->
+<!-- This document is meant to read and not viewed -->
+<!DOCTYPE html>
+<!-- lang attribute describes the language of enclosed content -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Class - Used to asscoiate rules / to access elemnt using script ( getElementsByClassName())  -->
+    <!-- An element can have multiple classes and a class can be in multiple elements. Not element specific -->
+    <p class="sample">Hello</p>
+
+    <!-- ID - Unique identifier for an element - Used to associate styling - used by getElementById() - used as an anchor  -->
+    <p id="Paragraph1">First Paragraph</p>
+    <a href="#mainContent">Skip to content</a>
+    <div id="mainContent">This is the content of the page.</div>
+
+    <!-- In form control and images name and id server the same purpose and to avoid confusion both may be used at the same time -->
+    <input type="text" name="name" id="name">
+
+    <!-- style - apply properties directly to an element and override any stylesheet applied ones -->
+    <h1 style="font: size 15px;">Custom</h1>
+
+    <!-- Title - Provide advisory text to an element - tooltip -->
+    <p title="Sample title for para">Sample Paragraph<p>
+
+    <!-- dir attribute can set the direction of language rtl - right to left -->
+    <div>
+        Standard text running left to right in most cases.
+        <bdo dir="rtl">
+            Napoleon never really said <q>Able was I ere I saw Elba.</q>
+        </bdo> 
+        More standard text.
+    </div>
+        
+</body>
+</html>
